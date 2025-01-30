@@ -6,12 +6,15 @@ module.exports = {
   mode: "development",
 
   devServer: {
+    open: true,
+    compress: true,
     port: 8080,
   },
 
   entry: "./src/index.js",
   target: "web",
   devtool: "source-map",
+  
   output: {
     path: path.resolve(__dirname, "dist"),
   },

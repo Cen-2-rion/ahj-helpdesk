@@ -1,19 +1,15 @@
 // основной класс приложения
-import TicketView from "./TicketView";
-import TicketForm from "./TicketForm";
-import TicketConfirm from "./TicketConfirm";
-
 class HelpDesk {
-  constructor(container, ticketService) {
+  constructor(container, ticketService, ticketView, ticketForm, ticketConfirm) {
     if (!(container instanceof HTMLElement)) {
       throw new Error("This is not an HTML element!");
     }
     this.container = container;
     this.ticketService = ticketService;
     this.tickets = [];
-    this.ticketView = new TicketView();
-    this.ticketForm = new TicketForm();
-    this.TicketConfirm = new TicketConfirm();
+    this.ticketView = ticketView;
+    this.ticketForm = ticketForm;
+    this.TicketConfirm = ticketConfirm;
   }
 
   // Инициализация приложения
