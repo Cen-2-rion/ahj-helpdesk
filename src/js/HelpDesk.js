@@ -12,14 +12,14 @@ class HelpDesk {
     this.TicketConfirm = ticketConfirm;
   }
 
-  // Инициализация приложения
+  // инициализация приложения
   init() {
     this.render();
     this.loadTickets();
     this.addEventListeners();
   }
 
-  // Загрузка тикетов с сервера
+  // загрузка тикетов с сервера
   loadTickets() {
     this.ticketService.list((tickets) => {
       this.tickets = tickets;
@@ -27,7 +27,7 @@ class HelpDesk {
     });
   }
 
-  // Отображение тикетов в интерфейсе
+  // отображение тикетов в интерфейсе
   renderTickets() {
     const ticketsContainer = this.container.querySelector(".tickets");
     ticketsContainer.innerHTML = "";
@@ -35,12 +35,12 @@ class HelpDesk {
       const ticketElement = this.ticketView.render(ticket);
       ticketsContainer.appendChild(ticketElement);
 
-      // Обработчики для тикета
+      // обработчики для тикета
       this.addTicketEventListeners(ticketElement, ticket);
     });
   }
 
-  // Отображение интерфейса приложения
+  // отображение интерфейса приложения
   render() {
     this.container.innerHTML = `
       <div class="helpdesk">
@@ -57,7 +57,7 @@ class HelpDesk {
     `;
   }
 
-  // Обработчик клика на кнопку добавления тикета
+  // обработчик клика на кнопку добавления тикета
   addEventListeners() {
     const addTicketBtn = this.container.querySelector(".add-ticket-btn");
     addTicketBtn.addEventListener("click", () => {
@@ -65,7 +65,7 @@ class HelpDesk {
     });
   }
 
-  // Обработчики событий для кнопок тикета
+  // обработчики событий для кнопок тикета
   addTicketEventListeners(ticketElement, ticket) {
     const editBtn = ticketElement.querySelector(".edit-btn");
     editBtn.addEventListener("click", () => {
@@ -76,7 +76,7 @@ class HelpDesk {
 
     const deleteBtn = ticketElement.querySelector(".delete-btn");
     deleteBtn.addEventListener("click", () => {
-      this.deleteTicket(ticket.id);
+      this.TicketConfirm.show(() => this.deleteTicket(ticket.id));
     });
 
     const doneBtn = ticketElement.querySelector(".done-btn");
@@ -85,7 +85,7 @@ class HelpDesk {
     });
   }
 
-  // Создание нового тикета
+  // создание нового тикета
   createTicket(data) {
     this.ticketService.create(data, (newTicket) => {
       this.tickets.push(newTicket);
@@ -93,19 +93,17 @@ class HelpDesk {
     });
   }
 
-  // Обновление тикета
+  // обновление тикета
   updateTicket(id, data) {
     this.ticketService.update(id, data, () => {
       this.loadTickets();
     });
   }
 
-  // Удаление тикета
+  // удаление тикета
   deleteTicket(id) {
-    this.TicketConfirm.show(() => {
-      this.ticketService.delete(id, () => {
-        this.loadTickets();
-      });
+    this.ticketService.delete(id, () => {
+      this.loadTickets();
     });
   }
 }

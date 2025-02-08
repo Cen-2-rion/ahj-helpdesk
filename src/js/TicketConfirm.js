@@ -37,11 +37,9 @@ class TicketConfirm {
     this.addModalEventListeners();
   }
 
-  // Добавление обработчиков событий для модального окна
+  // обработчики событий для модального окна
   addModalEventListeners() {
-    this.modal
-      .querySelector(".cancel-btn")
-      .addEventListener("click", () => this.close());
+    this.modal.querySelector(".cancel-btn").addEventListener("click", () => this.close());
     this.modal.querySelector(".ok-btn").addEventListener("click", () => {
       this.onConfirm();
       this.onConfirm = null;
@@ -49,7 +47,7 @@ class TicketConfirm {
     });
   }
 
-  // Закрытие модального окна
+  // закрытие модального окна
   close() {
     document.querySelector(".modal-overlay")?.remove();
     this.modal = null;

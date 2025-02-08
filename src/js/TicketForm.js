@@ -46,24 +46,16 @@ class TicketForm {
     this.addModalEventListeners();
   }
 
-  // обработчик событий для модального окна
+  // обработчики событий для модального окна
   addModalEventListeners() {
-    this.modal
-      .querySelector(".cancel-btn")
-      .addEventListener("click", () => this.close());
-    this.modal
-      .querySelector(".save-btn")
-      .addEventListener("click", () => this.handleSubmit());
+    this.modal.querySelector(".cancel-btn").addEventListener("click", () => this.close());
+    this.modal.querySelector(".save-btn").addEventListener("click", () => this.handleSubmit());
   }
 
   // обработка нажатия на кнопку "Сохранить" и отправка формы
   handleSubmit() {
-    const shortDescription = this.modal
-      .querySelector(".short-description")
-      .value.trim();
-    const fullDescription = this.modal
-      .querySelector(".full-description")
-      .value.trim();
+    const shortDescription = this.modal.querySelector(".short-description").value.trim();
+    const fullDescription = this.modal.querySelector(".full-description").value.trim();
 
     if (!shortDescription) {
       alert("Краткое описание обязательно!");

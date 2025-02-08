@@ -11,12 +11,6 @@ const ticketView = new TicketView();
 const ticketForm = new TicketForm();
 const ticketConfirm = new TicketConfirm();
 
-const app = new HelpDesk(
-  root,
-  ticketService,
-  ticketView,
-  ticketForm,
-  ticketConfirm,
-);
+const app = new HelpDesk(root, ticketService, ticketView, ticketForm, ticketConfirm);
 
 app.init();
